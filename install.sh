@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # PATHS
 export CONF_PATH=$HOME/.zsh_config
@@ -125,7 +125,7 @@ if [[ `uname` == "Darwin" ]] && [[ "$BREW" == "OK" ]]; then
 	fi
 	$HOME/.brew/bin/brew update
 	if [[ -f $CONF_PATH/brew_apps ]]; then
-		$HOME/.brew/bin/brew install `cat $CONF_PATH/brew_apps` ||
+		$HOME/.brew/bin/brew install `cat $CONF_PATH/brew_apps`
 		for line in `cat $CONF_PATH/brew_apps`
 		do
 			$HOME/.brew/bin/brew install $line ||
@@ -137,7 +137,7 @@ fi
 if [[ -n "$INS_UP_LN" ]]; then
 	rm -rf $HOME/.zshrc
 	cd
-	ln -sf .config_common/zshrc .zshrc
+	ln -sf $CONF_PATH/zshrc .zshrc
 	cd - > /dev/null
 	if [[ -f "$CONF_PATH/ln" ]]; then
 		OIFS=$IFS
@@ -158,55 +158,57 @@ if [[ -n "$INS_UP_LN" ]]; then
 fi
 
 if [[ "$USER" != "arigowin" ]] && [[ "$USER" != "dolewski" ]]; then
-    # remove my git config if it's not me
-    sed -i.back '/git/d' $CONF_PATH/ln
+	# remove my git config if it's not me
+	sed -i.back '/git/d' $CONF_PATH/ln
 fi
 
-# vim config
-CONFIG_VIM=$CONF_PATH/vim
-VIM_DEPOT=github.com:Arigowin/config_vim.git
-
-if [[ -e $CONFIG_VIM ]]
-then
-    rm -rf $CONFIG_VIM
-else
-    CONFIG_PARENT=`dirname $CONFIG_VIM`
-    CONFIG_PARENT=`dirname $CONFIG_PARENT`
-    if [[ ! -e $CONFIG_PARENT ]]; then
-        mkdir -p $CONFIG_PARENT
-    fi
-fi
-
-git clone "git@$VIM_DEPOT" $CONFIG_VIM
-# because some person keep using my personal config instead of doing their own,
-# they need to use the https version of this repo
-if [[ "$?" -ne 0 ]]; then
-    git clone "https://$VIM_DEPOT" $CONFIG_VIM
-fi
-if [[ -e $CONFIG_VIM ]]; then
-    cd $CONFIG_VIM && \
-        mkdir $CONFIG_VIM && \
-        vim +PlugInstall
-fi
+# # vim config
+# CONFIG_VIM=$CONF_PATH/vim
+# VIM_DEPOT=github.com:Arigowin/config_vim.git
+# 
+# if [[ -e $CONFIG_VIM ]]
+# then
+# 	rm -rf $CONFIG_VIM
+# 	rm -f $HOME/.vimrc
+# else
+# 	CONFIG_PARENT=`dirname $CONFIG_VIM`
+# 	CONFIG_PARENT=`dirname $CONFIG_PARENT`
+# 	if [[ ! -e $CONFIG_PARENT ]]; then
+# 		mkdir -p $CONFIG_PARENT
+# 	fi
+# fi
+# 
+# git clone "git@$VIM_DEPOT" $CONFIG_VIM
+# # because some person keep using my personal config instead of doing their own,
+# # they need to use the https version of this repo
+# if [[ "$?" -ne 0 ]]; then
+# 	git clone "https://$VIM_DEPOT" $CONFIG_VIM
+# fi
+# if [[ -e $CONFIG_VIM ]]; then
+# 	cd $CONFIG_VIM && \
+# 		cd && \
+# 		ln -s $CONFIG_VIM/vimrc .vimrc && \
+# 		vim +PlugInstall
+# fi
 
 if [[ -n $SCHOOL42 ]]; then
-    # create script dir if it doesn't exist
-    if [[ ! -e "$CONF_PATH/scripts" ]]; then
-        mkdir "$CONF_PATH/scripts"
-    fi
+	# create script dir if it doesn't exist
+	if [[ ! -e "$CONF_PATH/scripts" ]]; then
+		mkdir "$CONF_PATH/scripts"
+	fi
 
-    # cause ~/Library/Caches are always sync even if you don't want..
-    rm -rf $HOME/Library/Caches
-    mkdir -p /tmp/$USER/Caches
-    chmod 700 /tmp/$USER/Caches
-    cd $HOME/Library
-    ln -s /tmp/$USER/Caches
+	# cause ~/Library/Caches are always sync even if you don't want..
+	rm -rf $HOME/Library/Caches
+	mkdir -p /tmp/$USER/Caches
+	chmod 700 /tmp/$USER/Caches
+	cd $HOME/Library
+	ln -s /tmp/$USER/Caches
 
-    # add font for osx
-    cd
-    git clone https://github.com/powerline/fonts temp_fonts
-    cd temp_fonts
-    mkdir ~/Library/Fonts
-    ./install.sh
-    open /Applications/Font\ Book.app
+	# add font for osx
+	cd
+	git clone https://github.com/powerline/fonts temp_fonts
+	cd temp_fonts
+	mkdir ~/Library/Fonts
+	./install.sh
+	open /Applications/Font\ Book.app
 fi
