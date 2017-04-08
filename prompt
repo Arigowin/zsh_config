@@ -1,0 +1,41 @@
+#!/bin/zsh
+
+NORMAL="%{$reset_color%}"
+# Definition du prompt
+prompt_hook ()
+{
+	if [ $? -eq 0 ]
+	then
+		COLOR3="%{$fg[green]%}"
+	else
+		COLOR3="%{$fg[red]%}"
+	fi
+	PROMPT="%B%{$fg[green]%}[%T] %n@%m%{$NORMAL%}%b%{$fg[red]%}[$SHLVL]%{$NORMAL%}%B:%{$fg[blue]%}%~%{$NORMAL%}"
+	ISGIT=$(git status --ignore-submodules 2> /dev/null)
+	if [ -n "$ISGIT" ]
+	then
+		STATUS=$(echo "$ISGIT" | grep "modified:\|renamed:\|new file:\|deleted:" | grep -v ".vim/bundle\|untracked")
+		BRANCH=$(git branch | cut -d ' ' -f 2 | tr -d '\n')
+		if [ -n "$STATUS" ]
+		then
+			COLOR="%{$fg[red]%}"
+		else
+			REMOTE_EXIST=$(git branch -a | grep remotes/origin/$BRANCH)
+			if [ -n "$REMOTE_EXIST" ]
+			then
+				REMOTE=$(git diff --ignore-submodules origin/$BRANCH)
+				if [ -n "$REMOTE" ]
+				then
+					COLOR="%{$fg[yellow]%}"
+				else
+					COLOR="%{$fg[green]%}"
+				fi
+			else
+				COLOR="%{$fg[green]%}"
+			fi
+		fi
+		PROMPT="$PROMPT %{$COLOR%}[$BRANCH]%{$NORMAL%}"
+	fi
+	PROMPT="$PROMPT
+	%B%{$COLOR3%}> %{$NORMAL%}%b"
+}

@@ -1,0 +1,78 @@
+#!/bin/zsh
+
+# School only aliases
+if [[ -n $C_SCHOOL ]]; then
+    # misc
+    alias auteur="echo '$USER' > auteur"
+    alias libft="cp -r $LIB .; rm -rf libft/.git ; rm -f libft/.gitignore"
+
+    # cd alias
+    alias cdc="cd $HOME/Rendu"
+    alias cdl="cd $LIB"
+    alias cds="cd $HOME/scripts"
+
+    # compil alias
+    alias gccl="gcc -I $LIB/includes -L $LIB -lft"
+    alias gcclf="gcc -Wall -Wextra -Werror -I $LIB/includes -L $LIB -lft"
+
+    # sbcl
+    alias sbcl="sbcl --noinform"
+
+    # my script
+    alias genMakefile="sh $$C_PATH_TO_CONFIG/scripts/genMakefile.sh"
+    alias addHeader="sh $C_PATH_TO_CONFIG/.config_personal/scripts/addHeader42.sh"
+
+    alias ls="ls -G"
+fi
+
+# Definition des alias de git
+alias ga="git add"
+alias gb="git branch"
+alias gcm="git commit -m"
+alias gco="git checkout"
+alias gpl="git pull"
+alias gps="git push"
+alias gm="git merge"
+alias gst="git status"
+alias gu="git add -u ; git status"
+
+# Definition des alias de ls
+alias ls="ls --color"
+alias l="ls"
+alias ll="ls -l"
+alias la="ls -lA"
+alias lah="ls -lAh"
+alias lh="ls -lh"
+
+# Definition des alias de compilation
+alias gccf="gcc -Wall -Wextra -Werror"
+alias g++f="g++ -Wall -Wextra -Werror"
+
+# Definition des alias
+alias purgevim="rm -f $HOME/.vim/_*/*"
+
+# tmux alias
+if [[ "$C_SYS" != "Darwin" ]]; then
+	alias ta="tmux a"
+fi
+
+# Definition des alias
+alias clean="find . -name '*$HOME' -execdir rm {} \;"
+alias rl="source $HOME/.zshrc"
+alias update_symlink="$C_PATH_TO_CONFIG/install.sh -u -f"
+alias meteo="curl -4 'http://wttr.in/paris'"
+
+# Home only alias
+if [[ "$USER" == "arigowin" ]]; then
+    # pacman
+    alias pacman="sudo pacman"
+
+    # update
+    alias update="pacman -Syu"
+
+    # install
+    alias install="pacman -S"
+
+    # i3lock
+    alias i3lock="sh $HOME/.i3/scripts/i3lock.sh"
+fi
