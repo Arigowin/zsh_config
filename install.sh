@@ -162,34 +162,34 @@ if [[ "$USER" != "arigowin" ]] && [[ "$USER" != "dolewski" ]]; then
 	sed -i.back '/git/d' $CONF_PATH/ln
 fi
 
-# # vim config
-# CONFIG_VIM=$CONF_PATH/vim
-# VIM_DEPOT=github.com:Arigowin/config_vim.git
-# 
-# if [[ -e $CONFIG_VIM ]]
-# then
-# 	rm -rf $CONFIG_VIM
-# 	rm -f $HOME/.vimrc
-# else
-# 	CONFIG_PARENT=`dirname $CONFIG_VIM`
-# 	CONFIG_PARENT=`dirname $CONFIG_PARENT`
-# 	if [[ ! -e $CONFIG_PARENT ]]; then
-# 		mkdir -p $CONFIG_PARENT
-# 	fi
-# fi
-# 
-# git clone "git@$VIM_DEPOT" $CONFIG_VIM
-# # because some person keep using my personal config instead of doing their own,
-# # they need to use the https version of this repo
-# if [[ "$?" -ne 0 ]]; then
-# 	git clone "https://$VIM_DEPOT" $CONFIG_VIM
-# fi
-# if [[ -e $CONFIG_VIM ]]; then
-# 	cd $CONFIG_VIM && \
-# 		cd && \
-# 		ln -s $CONFIG_VIM/vimrc .vimrc && \
-# 		vim +PlugInstall
-# fi
+# vim config
+CONFIG_VIM=$CONF_PATH/vim
+VIM_DEPOT=github.com:Arigowin/config_vim.git
+
+if [[ -e $CONFIG_VIM ]]
+then
+	rm -rf $CONFIG_VIM
+	rm -f $HOME/.vimrc
+else
+	CONFIG_PARENT=`dirname $CONFIG_VIM`
+	CONFIG_PARENT=`dirname $CONFIG_PARENT`
+	if [[ ! -e $CONFIG_PARENT ]]; then
+		mkdir -p $CONFIG_PARENT
+	fi
+fi
+
+git clone "git@$VIM_DEPOT" $CONFIG_VIM
+# because some person keep using my personal config instead of doing their own,
+# they need to use the https version of this repo
+if [[ "$?" -ne 0 ]]; then
+	git clone "https://$VIM_DEPOT" $CONFIG_VIM
+fi
+if [[ -e $CONFIG_VIM ]]; then
+	cd $CONFIG_VIM && \
+		cd && \
+		ln -s $CONFIG_VIM/vimrc .vimrc && \
+		vim +PlugInstall
+fi
 
 if [[ -n $SCHOOL42 ]]; then
 	# create script dir if it doesn't exist
