@@ -208,7 +208,7 @@ if [[ -n $SCHOOL42 ]]; then
 	cd
 	git clone https://github.com/powerline/fonts temp_fonts
 	cd temp_fonts
-	mkdir ~/Library/Fonts
-	./install.sh
+	mkdir $HOME/Library/Fonts
+	cd $HOME/temp_fonts && ./install.sh
 	open /Applications/Font\ Book.app
 fi
