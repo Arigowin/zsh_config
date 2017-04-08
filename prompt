@@ -7,8 +7,10 @@ prompt_hook ()
 	if [ $? -eq 0 ]
 	then
 		COLOR3="%{$fg[green]%}"
+		RPROMPT="%{$COLOR3%} :( %{$NORMAL%}"
 	else
 		COLOR3="%{$fg[red]%}"
+		RPROMPT="%{$COLOR3%} :( %{$NORMAL%}"
 	fi
 	PROMPT="%B%{$fg[green]%}[%T] %n@%m%{$NORMAL%}%b%{$fg[red]%}[$SHLVL]%{$NORMAL%}%B:%{$fg[blue]%}%~%{$NORMAL%}"
 	ISGIT=$(git status --ignore-submodules 2> /dev/null)
@@ -37,5 +39,5 @@ prompt_hook ()
 		PROMPT="$PROMPT %{$COLOR%}[$BRANCH]%{$NORMAL%}"
 	fi
 	PROMPT="$PROMPT
-	%B%{$COLOR3%}> %{$NORMAL%}%b"
+%B%{$COLOR3%}> %{$NORMAL%}%b"
 }
