@@ -7,7 +7,7 @@ prompt_hook ()
 	if [ $? -eq 0 ]
 	then
 		COLOR3="%{$fg[green]%}"
-		RPROMPT="%{$COLOR3%} :( %{$NORMAL%}"
+		RPROMPT="%{$COLOR3%} :) %{$NORMAL%}"
 	else
 		COLOR3="%{$fg[red]%}"
 		RPROMPT="%{$COLOR3%} :( %{$NORMAL%}"
