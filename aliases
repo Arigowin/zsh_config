@@ -25,7 +25,7 @@ alias g++f="g++ -Wall -Wextra -Werror"
 
 # Definition des alias
 alias cdconf="cd $HOME/.zsh_config"
-alias purgevim="rmdir -f $HOME/.vim/_*/*"
+alias purgevim="rm -rf $HOME/.vim/_*/*"
 
 # tmux alias
 if [[ "$C_SYS" != "Darwin" ]]; then
