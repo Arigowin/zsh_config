@@ -6,7 +6,7 @@
 #    By: zaz <zaz@staff.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/06/20 15:51:57 by zaz               #+#    #+#              #
-#    Updated: 2015/12/11 16:03:35 by dolewski         ###   ########.fr        #
+#    Updated: 2018/03/31 15:35:57 by dolewski         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,3 +18,10 @@
 	email = dolewski@student.42.fr
 [push]
 	default = simple
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	unstage = reset HEAD --
+	last = log -1 HEAD

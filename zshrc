@@ -75,7 +75,6 @@ fi
 bindkey '^R' history-incremental-search-backward
 bindkey -e
 export LC_ALL=en_US.UTF-8
-export LIB=~/libft
 
 # default editor
 editor=`which nvim 2> /dev/null`
@@ -154,10 +153,16 @@ if [[ -n "$C_SCHOOL" ]]; then
 	# fucking mac and their /Volume/<hdd_name>
 	cd "`echo $PWD | sed 's:/Volumes/Data::'`"
 
+	# Libft
+	export LIB=~/libft
+
 	# Homebrew cache directory
 	export HOMEBREW_CACHE=/tmp/$USER/brew_caches
 	export HOMEBREW_TEMP=/tmp/$USER/brew_temp
 	mkdir -p $HOMEBREW_CACHE $HOMEBREW_TEMP
+
+	# 42AI Ateliers-ml
+	export PATH="/sgoinfre/goinfre/Perso/dolewski/anaconda3/bin:$PATH"
 
 	# update symlink in case of zsf change
 	if [[ ! -f $HOME/.old_home ]]; then
@@ -234,3 +239,6 @@ if [[ -n "$C_SCHOOL" ]]; then
 		fi
 	}
 fi
+
+# opam configuration
+test -r /Users/dolewski/.opam/opam-init/init.zsh && . /Users/dolewski/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
