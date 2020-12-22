@@ -26,6 +26,7 @@ a.out
 \#*#
 *~
 .*.swp
+.vscode
 
 # OS-generated crap
 .DS_Store
