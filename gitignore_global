@@ -6,7 +6,7 @@
 #    By: zaz <zaz@staff.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/06/20 15:51:46 by zaz               #+#    #+#              #
-#    Updated: 2015/12/12 18:35:53 by dolewski         ###   ########.fr        #
+#    Updated: 2018/03/27 11:59:32 by dolewski         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ a.out
 *.cmi
 *.cmx
 *.cmo
+objs/
 
 # Editor backups
 \#*#
@@ -37,3 +38,9 @@ a.out
 .nfs*
 Thumbs.db
 ehthumbs.db
+
+# IDE config file
+.vscode
+
+# Debug file
+*.dSYM

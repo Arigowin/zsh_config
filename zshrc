@@ -56,7 +56,6 @@ fi
 bindkey '^R' history-incremental-search-backward
 bindkey -e
 export LC_ALL=en_US.UTF-8
-export LIB=~/libft
 
 # default editor
 editor=`which nvim 2> /dev/null`
@@ -124,6 +123,7 @@ export PKG_CONFIG_PATH=$HOME/minilibx_linux
 # Tex
 PATH=/usr/local/texlive/2020/bin/x86_64-linux:$PATH
 
+<<<<<<< HEAD
 # SPRING CLI
 export SPRING_HOME=/home/arigowin/.spring
 PATH=$SPRING_HOME/bin:$PATH
@@ -131,6 +131,37 @@ PATH=$SPRING_HOME/bin:$PATH
 # 42 Header config
 export USER="dolewski"
 export MAIL="dolewski@student.42.fr"
+=======
+	# Libft
+	export LIB=~/libft
+
+	# Homebrew cache directory
+	export HOMEBREW_CACHE=/tmp/$USER/brew_caches
+	export HOMEBREW_TEMP=/tmp/$USER/brew_temp
+	mkdir -p $HOMEBREW_CACHE $HOMEBREW_TEMP
+
+	# 42AI Ateliers-ml
+	export PATH="/sgoinfre/goinfre/Perso/dolewski/anaconda3/bin:$PATH"
+
+	# update symlink in case of zsf change
+	if [[ ! -f $HOME/.old_home ]]; then
+		echo $HOME > $HOME/.old_home
+	fi
+	OLD_HOME=$(cat $HOME/.old_home)
+	if [[ "$OLD_HOME" != "$HOME" ]]; then
+		echo $HOME > $HOME/.old_home
+		$C_PATH_TO_CONFIG/install.sh -u
+		echo "+------------------------------------------------+"
+		echo "|                                                |"
+		echo "|             /!\\ You've changed zsf             |"
+		echo "|                                                |"
+		echo "| If you encounter issue with binaries installed |"
+		echo "| via brew, you should use the command :         |"
+		echo "| repare_brew                                    |"
+		echo "| /!\\ This command may take some time            |"
+		echo "+------------------------------------------------+"
+	fi
+>>>>>>> 2f015aa224025ed7e1d0ed9e4c4329146bb64efd
 
 # Cargo
 PATH=$HOME/.cargo/bin:$PATH
@@ -144,3 +175,6 @@ if [[ $TERM == xterm-termite ]]; then
   . /etc/profile.d/vte.sh
   __vte_osc7
 fi
+
+# opam configuration
+test -r /Users/dolewski/.opam/opam-init/init.zsh && . /Users/dolewski/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
